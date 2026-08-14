@@ -64,21 +64,21 @@ data:extend({
   },
   {
     type = "item",
-    name = "incubator-pen",
+    name = "carapace-nexus",
     icon = "__base__/graphics/icons/assembling-machine-1.png",
     icon_size = 64,
-    place_result = "incubator-pen",
+    place_result = "carapace-nexus",
     stack_size = 10,
     subgroup = "carapace-production",
     order = "a"
   },
   {
     type = "assembling-machine",
-    name = "incubator-pen",
+    name = "carapace-nexus",
     icon = "__base__/graphics/icons/assembling-machine-1.png",
     icon_size = 64,
-    flags = { "placeable-neutral", "player-creation" },
-    minable = { mining_time = 0.3, result = "incubator-pen" },
+    flags = { "placeable-player", "player-creation" },
+    minable = { mining_time = 0.3, result = "carapace-nexus" },
     max_health = 260,
     corpse = "assembling-machine-1-remnants",
     dying_explosion = "medium-explosion",
@@ -90,7 +90,7 @@ data:extend({
     energy_source = {
       type = "electric",
       usage_priority = "secondary-input",
-      emissions_per_minute = { pollution = 1.5 },
+      emissions_per_minute = { pollution = 0 },
       drain = "20kW"
     },
     energy_usage = "90kW",
@@ -145,30 +145,31 @@ data:extend({
     close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.5 }
   },
   (function()
-    local biter = table.deepcopy(data.raw["unit"]["small-biter"])
-    biter.name = "carapace-biter"
-    biter.icon = "__base__/graphics/icons/small-biter.png"
-    biter.icon_size = 64
-    biter.max_health = 96
-    biter.movement_speed = 0.30
-    biter.vision_distance = 34
-    biter.selection_box = { { -0.4, -0.4 }, { 0.4, 0.4 } }
-    biter.attack_parameters.range = 1.3
-    biter.attack_parameters.cooldown = 25
-    biter.attack_parameters.damage_modifier = 1.15
+    local ally = table.deepcopy(data.raw["unit"]["small-biter"])
+    ally.name = "carapace-sentinel"
+    ally.icon = "__base__/graphics/icons/small-biter.png"
+    ally.icon_size = 64
+    ally.max_health = 90
+    ally.movement_speed = 0.31
+    ally.vision_distance = 32
+    ally.selection_box = { { -0.4, -0.4 }, { 0.4, 0.4 } }
+    ally.attack_parameters.range = 1.4
+    ally.attack_parameters.cooldown = 30
+    ally.attack_parameters.damage_modifier = 1.0
+    ally.pollution_to_join_attack_ratio = 0
 
-    if biter.run_animation then
-      tint_animation(biter.run_animation, cyber_tint)
+    if ally.run_animation then
+      tint_animation(ally.run_animation, cyber_tint)
     end
 
-    if biter.attack_parameters and biter.attack_parameters.animation then
-      tint_animation(biter.attack_parameters.animation, cyber_tint)
+    if ally.attack_parameters and ally.attack_parameters.animation then
+      tint_animation(ally.attack_parameters.animation, cyber_tint)
     end
 
-    if biter.stand_animation then
-      tint_animation(biter.stand_animation, cyber_tint)
+    if ally.stand_animation then
+      tint_animation(ally.stand_animation, cyber_tint)
     end
 
-    return biter
+    return ally
   end)()
 })
