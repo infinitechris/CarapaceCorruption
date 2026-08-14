@@ -21,6 +21,18 @@ This project is designed as a clean foundation for future expansion, with a stro
 
 This is an initial scaffold and prototype pass. The goal is to establish the visual and mechanical identity of the mod before expanding into additional content and gameplay systems.
 
+## Testing Phase
+
+The current build is intentionally focused on a reliable allied-only test loop:
+
+- the player-placed `carapace-nexus` acts as a spawn anchor
+- allied `carapace-sentinel` units are generated on the player force
+- a safe inner ring prevents overlapping with the structure itself
+- spawned allies are pushed outward so more units can appear without stacking at the origin
+- the structure checks for nearby allies on a 180-second interval to keep the prototype stable and observable
+
+For testing, enemies should remain off so the behavior is isolated to the allied spawn and spacing logic.
+
 ## Development Notes
 
 The visual direction emphasizes:

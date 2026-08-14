@@ -1,3 +1,6 @@
+-- Test-phase configuration: allied-only spawning with a fixed 180-second cadence.
+-- The structure exists as a player-aligned spawn anchor; the units are free to test
+-- spacing, safe placement, and dynamic separation without enemy interference.
 local PERIODIC_TICK = 180
 local STRUCTURE_NAME = "carapace-nexus"
 local ALLIED_NAME = "carapace-sentinel"
