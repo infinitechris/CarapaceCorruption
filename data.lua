@@ -73,7 +73,7 @@ data:extend({
   {
     type = "item",
     name = "carapace-nexus",
-    icon = "__base__/graphics/icons/assembling-machine-1.png",
+    icon = "__carapace-corruption__/graphics/icons/carapace-nexus.png",
     icon_size = 64,
     place_result = "carapace-nexus",
     stack_size = 10,
@@ -81,21 +81,9 @@ data:extend({
     order = "a"
   },
   {
-    type = "recipe",
-    name = "carapace-nexus-free-build",
-    enabled = true,
-    energy_required = 0.5,
-    ingredients = {},
-    results = {
-      { type = "item", name = "carapace-nexus", amount = 1 }
-    },
-    subgroup = "carapace-production",
-    order = "a"
-  },
-  {
     type = "assembling-machine",
     name = "carapace-nexus",
-    icon = "__base__/graphics/icons/assembling-machine-1.png",
+    icon = "__carapace-corruption__/graphics/icons/carapace-nexus.png",
     icon_size = 64,
     flags = { "placeable-player", "player-creation" },
     minable = { mining_time = 0.3, result = "carapace-nexus" },
