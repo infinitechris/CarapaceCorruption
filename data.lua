@@ -135,6 +135,7 @@ data:extend({
         pipe_covers = pipecoverspictures(),
         base_area = 10,
         base_level = 1,
+        volume = 1000,
         pipe_connections = {
           { flow_direction = "output", direction = defines.direction.east, position = { 1.5, 0.0 } }
         },
