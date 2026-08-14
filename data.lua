@@ -1,11 +1,49 @@
+local cyber_tint = { r = 0.24, g = 0.96, b = 0.68, a = 0.90 }
+
+local function tint_animation(animation, tint)
+  if not animation then
+    return animation
+  end
+
+  if animation.layers then
+    for _, layer in pairs(animation.layers) do
+      if layer.filename then
+        layer.tint = tint
+      end
+    end
+  elseif animation.filename then
+    animation.tint = tint
+  end
+
+  return animation
+end
+
 data:extend({
+  {
+    type = "item-group",
+    name = "carapace-corruption",
+    order = "e",
+    inventory_order = "e"
+  },
+  {
+    type = "item-subgroup",
+    name = "carapace-raw",
+    group = "carapace-corruption",
+    order = "a"
+  },
+  {
+    type = "item-subgroup",
+    name = "carapace-production",
+    group = "carapace-corruption",
+    order = "b"
+  },
   {
     type = "fluid",
     name = "cyber-slurry",
     default_temperature = 25,
     max_temperature = 100,
-    base_color = { r = 0.26, g = 0.78, b = 0.55 },
-    flow_color = { r = 0.60, g = 1.00, b = 0.80 },
+    base_color = { r = 0.18, g = 0.82, b = 0.62 },
+    flow_color = { r = 0.48, g = 1.00, b = 0.72 },
     pressure_to_speed_ratio = 0.4,
     flow_to_energy_ratio = 0.4,
     auto_barrel = false,
@@ -16,12 +54,12 @@ data:extend({
     name = "cyber-slurry-production",
     category = "carapace-incubation",
     enabled = true,
-    energy_required = 1,
+    energy_required = 1.5,
     ingredients = {},
     results = {
       { type = "fluid", name = "cyber-slurry", amount = 50 }
     },
-    subgroup = "fluid",
+    subgroup = "carapace-production",
     order = "a"
   },
   {
@@ -31,7 +69,7 @@ data:extend({
     icon_size = 64,
     place_result = "incubator-pen",
     stack_size = 10,
-    subgroup = "production",
+    subgroup = "carapace-production",
     order = "a"
   },
   {
@@ -41,7 +79,7 @@ data:extend({
     icon_size = 64,
     flags = { "placeable-neutral", "player-creation" },
     minable = { mining_time = 0.3, result = "incubator-pen" },
-    max_health = 250,
+    max_health = 260,
     corpse = "assembling-machine-1-remnants",
     dying_explosion = "medium-explosion",
     collision_box = { { -1.2, -1.2 }, { 1.2, 1.2 } },
@@ -55,7 +93,7 @@ data:extend({
       emissions_per_minute = { pollution = 1.5 },
       drain = "20kW"
     },
-    energy_usage = "80kW",
+    energy_usage = "90kW",
     ingredient_count = 0,
     module_specification = { module_slots = 0 },
     allowed_effects = {},
@@ -70,7 +108,7 @@ data:extend({
           line_length = 8,
           shift = { 0.0, -0.1 },
           scale = 0.8,
-          tint = { r = 0.40, g = 0.80, b = 0.60, a = 0.90 }
+          tint = cyber_tint
         }
       }
     },
@@ -85,7 +123,7 @@ data:extend({
           line_length = 8,
           shift = { 0.0, -0.1 },
           scale = 0.8,
-          tint = { r = 0.40, g = 0.80, b = 0.60, a = 0.90 }
+          tint = cyber_tint
         }
       }
     },
@@ -111,22 +149,24 @@ data:extend({
     biter.name = "carapace-biter"
     biter.icon = "__base__/graphics/icons/small-biter.png"
     biter.icon_size = 64
-    biter.max_health = 90
-    biter.movement_speed = 0.28
-    biter.vision_distance = 32
+    biter.max_health = 96
+    biter.movement_speed = 0.30
+    biter.vision_distance = 34
     biter.selection_box = { { -0.4, -0.4 }, { 0.4, 0.4 } }
-    biter.attack_parameters.range = 1.2
+    biter.attack_parameters.range = 1.3
+    biter.attack_parameters.cooldown = 25
+    biter.attack_parameters.damage_modifier = 1.15
 
-    if biter.run_animation and biter.run_animation.layers then
-      for _, layer in pairs(biter.run_animation.layers) do
-        layer.tint = { r = 0.40, g = 0.80, b = 0.60, a = 0.80 }
-      end
+    if biter.run_animation then
+      tint_animation(biter.run_animation, cyber_tint)
     end
 
-    if biter.attack_parameters and biter.attack_parameters.animation and biter.attack_parameters.animation.layers then
-      for _, layer in pairs(biter.attack_parameters.animation.layers) do
-        layer.tint = { r = 0.40, g = 0.80, b = 0.60, a = 0.80 }
-      end
+    if biter.attack_parameters and biter.attack_parameters.animation then
+      tint_animation(biter.attack_parameters.animation, cyber_tint)
+    end
+
+    if biter.stand_animation then
+      tint_animation(biter.stand_animation, cyber_tint)
     end
 
     return biter
