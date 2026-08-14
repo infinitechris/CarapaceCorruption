@@ -1,4 +1,4 @@
-local PERIODIC_TICK = 60
+local PERIODIC_TICK = 180
 local STRUCTURE_NAME = "carapace-nexus"
 local ALLIED_NAME = "carapace-sentinel"
 local SAFE_RADIUS = 4.0
