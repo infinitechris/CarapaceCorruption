@@ -61,6 +61,31 @@ local function on_entity_created(event)
   end
 end
 
+local function update_status_lamp(structure, is_full)
+  if not structure or not structure.valid then
+    return
+  end
+
+  local lamp_pos = {
+    x = structure.position.x + 1.5,
+    y = structure.position.y - 1.0
+  }
+
+  local lamp = structure.surface.find_entity("small-lamp", lamp_pos)
+  if not lamp then
+    lamp = structure.surface.create_entity({
+      name = "small-lamp",
+      position = lamp_pos,
+      force = structure.force,
+      color = is_full and { r = 1.0, g = 0.35, b = 0.2, a = 1.0 } or { r = 0.2, g = 1.0, b = 0.7, a = 1.0 }
+    })
+  end
+
+  if lamp and lamp.valid then
+    lamp.color = is_full and { r = 1.0, g = 0.35, b = 0.2, a = 1.0 } or { r = 0.2, g = 1.0, b = 0.7, a = 1.0 }
+  end
+end
+
 local function fill_internal_barrel(structure)
   if not structure or not structure.valid then
     return
@@ -71,11 +96,15 @@ local function fill_internal_barrel(structure)
     return
   end
 
-  if inventory.get_item_count(BARREL_NAME) >= 1 then
+  local is_full = inventory.get_item_count(BARREL_NAME) >= 1
+  update_status_lamp(structure, is_full)
+
+  if is_full then
     return
   end
 
   inventory.insert({ name = BARREL_NAME, count = 1 })
+  update_status_lamp(structure, true)
 end
 
 local function periodic_checks()
@@ -93,11 +122,15 @@ local function periodic_checks()
           }
         })
 
-        if #allied < MAX_ALLIES_PER_STRUCTURE then
+        local inventory = structure.get_inventory(defines.inventory.chest)
+        local is_full = inventory and inventory.get_item_count(BARREL_NAME) >= 1
+
+        if not is_full and #allied < MAX_ALLIES_PER_STRUCTURE then
           spawn_allied_unit(surface, structure)
         end
 
         fill_internal_barrel(structure)
+        update_status_lamp(structure, inventory and inventory.get_item_count(BARREL_NAME) >= 1)
       end
     end
   end
