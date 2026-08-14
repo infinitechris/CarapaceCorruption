@@ -122,6 +122,22 @@ local function periodic_checks()
   end
 end
 
+local function grant_free_nexus(player)
+  if not player or not player.valid then
+    return
+  end
+
+  local inventory = player.get_main_inventory()
+  if inventory and inventory.get_item_count(STRUCTURE_NAME) == 0 then
+    inventory.insert({ name = STRUCTURE_NAME, count = 1 })
+  end
+end
+
+script.on_event(defines.events.on_player_created, function(event)
+  local player = game.get_player(event.player_index)
+  grant_free_nexus(player)
+end)
+
 script.on_event(defines.events.on_built_entity, on_entity_created)
 script.on_event(defines.events.on_robot_built_entity, on_entity_created)
 script.on_event(defines.events.script_raised_built, on_entity_created)
