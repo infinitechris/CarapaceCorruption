@@ -4,6 +4,7 @@
 local PERIODIC_TICK = 180
 local STRUCTURE_NAME = "carapace-nexus"
 local ALLIED_NAME = "carapace-sentinel"
+local BARREL_NAME = "cyber-slurry-barrel"
 local SAFE_RADIUS = 4.0
 local SPAWN_OUTER_RADIUS = 8.0
 local MAX_ALLIES_PER_STRUCTURE = 3
@@ -93,6 +94,38 @@ local function on_entity_created(event)
   end
 end
 
+local function release_barrel(structure)
+  if not structure or not structure.valid then
+    return
+  end
+
+  local surface = structure.surface
+  local nearby_barrels = surface.find_entities_filtered({
+    type = "item-entity",
+    area = {
+      { structure.position.x - 3, structure.position.y - 3 },
+      { structure.position.x + 3, structure.position.y + 3 }
+    }
+  })
+
+  local has_barrel = false
+  for _, entity in pairs(nearby_barrels) do
+    if entity.valid and entity.stack and entity.stack.name == BARREL_NAME then
+      has_barrel = true
+      break
+    end
+  end
+
+  if not has_barrel then
+    local barrel_pos = {
+      x = structure.position.x + 1.5,
+      y = structure.position.y + 1.5
+    }
+
+    surface.spill_item_stack(barrel_pos, { name = BARREL_NAME, count = 1 }, true)
+  end
+end
+
 local function periodic_checks()
   for _, surface in pairs(game.surfaces) do
     local structures = surface.find_entities_filtered({ name = STRUCTURE_NAME })
@@ -111,6 +144,8 @@ local function periodic_checks()
         if #allied < MAX_ALLIES_PER_STRUCTURE then
           spawn_allied_unit(surface, structure)
         end
+
+        release_barrel(structure)
 
         for _, unit in pairs(allied) do
           push_allied_away(structure, unit)

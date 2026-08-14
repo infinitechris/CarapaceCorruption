@@ -28,7 +28,8 @@ The current build is intentionally focused on a reliable allied-only test loop:
 
 - the player-placed `carapace-nexus` acts as a spawn anchor
 - allied `carapace-sentinel` units are generated on the player force
-- Cyber-Slurry is treated as a barreled resource and can be removed from the structure for testing
+- Cyber-Slurry is treated as a barreled resource and is released from the structure in a controlled test flow
+- barrel drops can be removed from the nexus area for observation and handling
 - a safe inner ring prevents overlapping with the structure itself
 - spawned allies are pushed outward so more units can appear without stacking at the origin
 - the structure checks for nearby allies on a 180-second interval to keep the prototype stable and observable
