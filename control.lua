@@ -41,42 +41,6 @@ local function spawn_allied_unit(surface, structure)
   return entity
 end
 
-local function push_allied_away(structure, unit)
-  if not (structure and structure.valid) or not (unit and unit.valid) then
-    return
-  end
-
-  local dist = distance_between(structure.position, unit.position)
-  if dist >= SAFE_RADIUS then
-    return
-  end
-
-  local dx = unit.position.x - structure.position.x
-  local dy = unit.position.y - structure.position.y
-  local length = math.sqrt(dx * dx + dy * dy)
-
-  if length == 0 then
-    dx = 1
-    dy = 0
-    length = 1
-  end
-
-  local target = {
-    x = unit.position.x + (dx / length) * 3,
-    y = unit.position.y + (dy / length) * 3
-  }
-
-  local safe_target = unit.surface.find_non_colliding_position(ALLIED_NAME, target, 5, 0.5) or target
-
-  if unit.commandable and unit.set_command then
-    unit.set_command({
-      type = defines.command.go_to_location,
-      destination = safe_target,
-      radius = 2
-    })
-  end
-end
-
 local function on_entity_created(event)
   local entity = event.created_entity or event.entity
 
@@ -153,10 +117,6 @@ local function periodic_checks()
         end
 
         release_barrel(structure)
-
-        for _, unit in pairs(allied) do
-          push_allied_away(structure, unit)
-        end
       end
     end
   end
