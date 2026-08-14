@@ -137,7 +137,7 @@ data:extend({
         base_level = 1,
         volume = 1000,
         pipe_connections = {
-          { flow_direction = "output", direction = defines.direction.east, position = { 1.5, 0.0 } }
+          { flow_direction = "output", direction = defines.direction.east, position = { 1.1, 0.0 } }
         },
         secondary_draw_orders = { north = -1 }
       }
