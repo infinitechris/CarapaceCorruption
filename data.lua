@@ -81,6 +81,17 @@ data:extend({
     order = "a"
   },
   {
+    type = "recipe",
+    name = "carapace-nexus-handcraft",
+    enabled = true,
+    ingredients = {},
+    results = {
+      { type = "item", name = "carapace-nexus", amount = 1 }
+    },
+    subgroup = "carapace-production",
+    order = "a"
+  },
+  {
     type = "assembling-machine",
     name = "carapace-nexus",
     icon = "__carapace-corruption__/graphics/icons/carapace-nexus.png",
