@@ -84,7 +84,6 @@ data:extend({
     dying_explosion = "medium-explosion",
     collision_box = { { -1.2, -1.2 }, { 1.2, 1.2 } },
     selection_box = { { -1.5, -1.5 }, { 1.5, 1.5 } },
-    damaged_trigger_effect = hit_effects.entity(),
     crafting_categories = { "carapace-incubation" },
     crafting_speed = 1,
     energy_source = {
