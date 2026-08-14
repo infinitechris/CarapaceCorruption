@@ -61,14 +61,6 @@ local function on_entity_created(event)
   end
 end
 
-local function update_machine_state(structure, is_full)
-  if not structure or not structure.valid then
-    return
-  end
-
-  return is_full
-end
-
 local function fill_internal_barrel(structure)
   if not structure or not structure.valid then
     return
@@ -110,7 +102,6 @@ local function periodic_checks()
         end
 
         fill_internal_barrel(structure)
-        update_machine_state(structure, inventory and inventory.get_item_count(BARREL_NAME) >= 1)
       end
     end
   end
