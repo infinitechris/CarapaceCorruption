@@ -40,6 +40,8 @@ data:extend({
   {
     type = "fluid",
     name = "cyber-slurry",
+    icon = "__base__/graphics/icons/fluid/water.png",
+    icon_size = 64,
     default_temperature = 25,
     max_temperature = 100,
     base_color = { r = 0.18, g = 0.82, b = 0.62 },
