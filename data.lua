@@ -73,7 +73,6 @@ data:extend({
   {
     type = "item",
     name = "carapace-nexus",
-    flags = { "hidden" },
     icon = "__carapace-corruption__/graphics/icons/carapace-nexus.png",
     icon_size = 64,
     place_result = "carapace-nexus",
