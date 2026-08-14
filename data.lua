@@ -40,6 +40,10 @@ data:extend({
     order = "b"
   },
   {
+    type = "recipe-category",
+    name = "carapace-incubation"
+  },
+  {
     type = "fluid",
     name = "cyber-slurry",
     icon = "__base__/graphics/icons/fluid/water.png",
