@@ -46,7 +46,7 @@ data:extend({
     flow_color = { r = 0.48, g = 1.00, b = 0.72 },
     pressure_to_speed_ratio = 0.4,
     flow_to_energy_ratio = 0.4,
-    auto_barrel = false,
+    auto_barrel = true,
     order = "a"
   },
   {

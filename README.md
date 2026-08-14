@@ -6,7 +6,8 @@ This project is designed as a clean foundation for future expansion, with a stro
 
 ## Features
 
-- Custom fluid: Cyber-Slurry
+- Custom fluid: Cyber-Slurry, treated as a barreled resource for the mod's lifetime
+- Structure-based testing flow where barrels can be removed from the nexus for observation and handling
 - Incubator Pen prototype as a simple electric production machine
 - Corrupted biter unit using base-style animations with a custom tint
 - Minimal control script with entity hooks and a throttled periodic tick loop
@@ -27,6 +28,7 @@ The current build is intentionally focused on a reliable allied-only test loop:
 
 - the player-placed `carapace-nexus` acts as a spawn anchor
 - allied `carapace-sentinel` units are generated on the player force
+- Cyber-Slurry is treated as a barreled resource and can be removed from the structure for testing
 - a safe inner ring prevents overlapping with the structure itself
 - spawned allies are pushed outward so more units can appear without stacking at the origin
 - the structure checks for nearby allies on a 180-second interval to keep the prototype stable and observable
