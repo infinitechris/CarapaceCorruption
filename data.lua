@@ -92,9 +92,9 @@ data:extend({
     order = "a"
   },
   {
-    type = "simple-entity-with-owner",
+    type = "container",
     name = "carapace-nexus",
-    icon = "__carapace-corruption__/graphics/icons/carapace-nexus.png",
+    icon = "__base__/graphics/icons/assembling-machine-1.png",
     icon_size = 64,
     flags = { "placeable-player", "player-creation" },
     minable = { mining_time = 0.3, result = "carapace-nexus" },
@@ -103,14 +103,18 @@ data:extend({
     dying_explosion = "medium-explosion",
     collision_box = { { -1.2, -1.2 }, { 1.2, 1.2 } },
     selection_box = { { -1.5, -1.5 }, { 1.5, 1.5 } },
+    inventory_size = 1,
     picture = {
-      filename = "__carapace-corruption__/graphics/entity/carapace-nexus.png",
-      width = 128,
-      height = 128,
-      scale = 0.9,
-      shift = { 0.0, 0.0 }
+      filename = "__base__/graphics/entity/assembling-machine-1/assembling-machine-1.png",
+      priority = "high",
+      width = 108,
+      height = 110,
+      frame_count = 1,
+      line_length = 1,
+      shift = { 0.0, -0.1 },
+      scale = 0.8,
+      tint = cyber_tint
     },
-    render_layer = "object",
     vehicle_impact_sound = { filename = "__base__/sound/car-metal-impact.ogg", volume = 0.5 }
   },
   (function()

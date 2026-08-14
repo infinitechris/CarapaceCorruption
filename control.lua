@@ -61,40 +61,21 @@ local function on_entity_created(event)
   end
 end
 
-local function release_barrel(structure)
+local function fill_internal_barrel(structure)
   if not structure or not structure.valid then
     return
   end
 
-  local surface = structure.surface
-  local nearby_barrels = surface.find_entities_filtered({
-    type = "item-entity",
-    area = {
-      { structure.position.x - 3, structure.position.y - 3 },
-      { structure.position.x + 3, structure.position.y + 3 }
-    }
-  })
-
-  local has_barrel = false
-  for _, entity in pairs(nearby_barrels) do
-    if entity.valid and entity.stack and entity.stack.name == BARREL_NAME then
-      has_barrel = true
-      break
-    end
+  local inventory = structure.get_inventory(defines.inventory.chest)
+  if not inventory then
+    return
   end
 
-  if not has_barrel then
-    local barrel_pos = {
-      x = structure.position.x + 1.5,
-      y = structure.position.y + 1.5
-    }
-
-    surface.create_entity({
-      name = "item-on-ground",
-      position = barrel_pos,
-      stack = { name = BARREL_NAME, count = 1 }
-    })
+  if inventory.get_item_count(BARREL_NAME) >= 1 then
+    return
   end
+
+  inventory.insert({ name = BARREL_NAME, count = 1 })
 end
 
 local function periodic_checks()
@@ -116,7 +97,7 @@ local function periodic_checks()
           spawn_allied_unit(surface, structure)
         end
 
-        release_barrel(structure)
+        fill_internal_barrel(structure)
       end
     end
   end
