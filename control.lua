@@ -67,11 +67,14 @@ local function push_allied_away(structure, unit)
   }
 
   local safe_target = unit.surface.find_non_colliding_position(ALLIED_NAME, target, 5, 0.5) or target
-  unit.set_command({
-    type = defines.command.go_to_location,
-    destination = safe_target,
-    radius = 2
-  })
+
+  if unit.commandable and unit.set_command then
+    unit.set_command({
+      type = defines.command.go_to_location,
+      destination = safe_target,
+      radius = 2
+    })
+  end
 end
 
 local function on_entity_created(event)
