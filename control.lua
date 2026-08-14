@@ -66,11 +66,7 @@ local function update_machine_state(structure, is_full)
     return
   end
 
-  if not structure.unit_number then
-    return
-  end
-
-  structure.set_health(math.max(structure.health - 0, 1))
+  return is_full
 end
 
 local function fill_internal_barrel(structure)
