@@ -1,0 +1,10 @@
+# Factorio mod local data
+*.bak
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/

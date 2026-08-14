@@ -1,0 +1,10 @@
+{
+  "name": "carapace-corruption",
+  "title": "Carapace Corruption",
+  "version": "0.1.0",
+  "factorio_version": "2.0",
+  "author": "YourName",
+  "description": "A small custom mod prototype set for Cyber-Slurry and incubator-based production.",
+  "homepage": "",
+  "dependencies": ["base"]
+}
