@@ -122,7 +122,11 @@ local function release_barrel(structure)
       y = structure.position.y + 1.5
     }
 
-    surface.spill_item_stack(barrel_pos, { name = BARREL_NAME, count = 1 }, true)
+    surface.create_entity({
+      name = "item-on-ground",
+      position = barrel_pos,
+      stack = { name = BARREL_NAME, count = 1 }
+    })
   end
 end
 
