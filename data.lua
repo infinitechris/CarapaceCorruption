@@ -71,6 +71,17 @@ data:extend({
     order = "a"
   },
   {
+    type = "recipe",
+    name = "carapace-nexus-craft",
+    enabled = true,
+    ingredients = {},
+    results = {
+      { type = "item", name = "carapace-nexus", amount = 1 }
+    },
+    subgroup = "carapace-production",
+    order = "b"
+  },
+  {
     type = "item",
     name = "carapace-nexus",
     icon = "__carapace-corruption__/graphics/icons/carapace-nexus.png",
