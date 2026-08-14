@@ -81,41 +81,76 @@ data:extend({
     order = "a"
   },
   {
-    type = "recipe",
-    name = "carapace-nexus-handcraft",
-    enabled = true,
-    ingredients = {},
-    results = {
-      { type = "item", name = "carapace-nexus", amount = 1 }
-    },
-    subgroup = "carapace-production",
-    order = "a"
-  },
-  {
-    type = "container",
+    type = "assembling-machine",
     name = "carapace-nexus",
-    icon = "__base__/graphics/icons/assembling-machine-1.png",
+    icon = "__carapace-corruption__/graphics/icons/carapace-nexus.png",
     icon_size = 64,
     flags = { "placeable-player", "player-creation" },
     minable = { mining_time = 0.3, result = "carapace-nexus" },
     max_health = 260,
-    corpse = "small-remnants",
+    corpse = "assembling-machine-1-remnants",
     dying_explosion = "medium-explosion",
     collision_box = { { -1.2, -1.2 }, { 1.2, 1.2 } },
     selection_box = { { -1.5, -1.5 }, { 1.5, 1.5 } },
-    inventory_size = 1,
-    picture = {
-      filename = "__base__/graphics/entity/assembling-machine-1/assembling-machine-1.png",
-      priority = "high",
-      width = 108,
-      height = 110,
-      frame_count = 1,
-      line_length = 1,
-      shift = { 0.0, -0.1 },
-      scale = 0.8,
-      tint = cyber_tint
+    crafting_categories = { "carapace-incubation" },
+    crafting_speed = 1,
+    energy_source = {
+      type = "electric",
+      usage_priority = "secondary-input",
+      emissions_per_minute = { pollution = 0 },
+      drain = "20kW"
     },
-    vehicle_impact_sound = { filename = "__base__/sound/car-metal-impact.ogg", volume = 0.5 }
+    energy_usage = "90kW",
+    ingredient_count = 0,
+    module_specification = { module_slots = 0 },
+    allowed_effects = {},
+    animation = {
+      layers = {
+        {
+          filename = "__base__/graphics/entity/assembling-machine-1/assembling-machine-1.png",
+          priority = "high",
+          width = 108,
+          height = 110,
+          frame_count = 32,
+          line_length = 8,
+          shift = { 0.0, -0.1 },
+          scale = 0.8,
+          tint = cyber_tint
+        }
+      }
+    },
+    working_visualisations = {
+      {
+        animation = {
+          filename = "__base__/graphics/entity/assembling-machine-1/assembling-machine-1-working.png",
+          priority = "high",
+          width = 108,
+          height = 110,
+          frame_count = 32,
+          line_length = 8,
+          shift = { 0.0, -0.1 },
+          scale = 0.8,
+          tint = cyber_tint
+        }
+      }
+    },
+    fluid_boxes = {
+      {
+        production_type = "output",
+        pipe_picture = assembler2pipepictures(),
+        pipe_covers = pipecoverspictures(),
+        base_area = 10,
+        base_level = 1,
+        volume = 1000,
+        pipe_connections = {
+          { flow_direction = "output", direction = defines.direction.east, position = { 1.1, 0.0 } }
+        },
+        secondary_draw_orders = { north = -1 }
+      }
+    },
+    vehicle_impact_sound = { filename = "__base__/sound/car-metal-impact.ogg", volume = 0.5 },
+    open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.5 },
+    close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.5 }
   },
   (function()
     local ally = table.deepcopy(data.raw["unit"]["small-biter"])
