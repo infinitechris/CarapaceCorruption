@@ -22,6 +22,8 @@ data:extend({
   {
     type = "item-group",
     name = "carapace-corruption",
+    icon = "__base__/graphics/icons/creative-mod-gui.png",
+    icon_size = 64,
     order = "e",
     inventory_order = "e"
   },
