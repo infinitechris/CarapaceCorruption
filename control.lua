@@ -9,6 +9,9 @@ local SAFE_RADIUS = 6.0
 local SPAWN_OUTER_RADIUS = 12.0
 local MAX_ALLIES_PER_STRUCTURE = 3
 local ENEMY_REACTION_RADIUS = 12.0
+-- Temporary test gate: keep the enemy spawn helper available for future pressure tests,
+-- but leave it disabled for the current allied-only prototype phase.
+local TEST_ENEMY_SPAWNS_ENABLED = false
 
 local function distance_between(a, b)
   local dx = a.x - b.x
@@ -114,6 +117,10 @@ local function nearest_enemy_in_range(surface, position)
 end
 
 local function spawn_test_enemy_if_needed(surface, structure)
+  if not TEST_ENEMY_SPAWNS_ENABLED then
+    return
+  end
+
   local probe_pos = {
     x = structure.position.x + 10,
     y = structure.position.y
