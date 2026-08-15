@@ -6,5 +6,5 @@
   "author": "YourName",
   "description": "A cyberpunk bio-mechanical corruption mod featuring Cyber-Slurry, incubator machinery, and mutated biter threats.",
   "homepage": "",
-  "dependencies": ["base"]
+  "dependencies": ["base >= 2.0.0"]
 }
