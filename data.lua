@@ -84,7 +84,7 @@ data:extend({
   {
     type = "item",
     name = "cyber-slurry-barrel",
-    icon = "__base__/graphics/icons/fluid/barrel.png",
+    icon = "__base__/graphics/icons/fluid/water.png",
     icon_size = 64,
     stack_size = 50,
     subgroup = "carapace-production",
