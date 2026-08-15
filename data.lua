@@ -118,7 +118,7 @@ data:extend({
     energy_source = {
       type = "void"
     },
-    energy_usage = "0W",
+    energy_usage = "1W",
     ingredient_count = 0,
     module_specification = { module_slots = 0 },
     allowed_effects = {},
