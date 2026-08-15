@@ -115,6 +115,10 @@ data:extend({
     drawing_box = { { -3.2, -3.2 }, { 3.2, 3.2 } },
     crafting_categories = { "carapace-incubation" },
     crafting_speed = 1,
+    energy_source = {
+      type = "void"
+    },
+    energy_usage = "0W",
     ingredient_count = 0,
     module_specification = { module_slots = 0 },
     allowed_effects = {},
