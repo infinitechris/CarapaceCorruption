@@ -61,18 +61,30 @@ local function on_entity_created(event)
   end
 end
 
+local function output_is_full(structure)
+  if not structure or not structure.valid then
+    return true
+  end
+
+  local output_inventory = structure.get_inventory(defines.inventory.assembling_machine_output)
+  if not output_inventory then
+    return true
+  end
+
+  return output_inventory.get_item_count(BARREL_NAME) >= 1
+end
+
 local function fill_internal_barrel(structure)
   if not structure or not structure.valid then
     return
   end
 
-  local output_inventory = structure.get_inventory(defines.inventory.assembling_machine_output)
-  if not output_inventory then
+  if output_is_full(structure) then
     return
   end
 
-  local is_full = output_inventory.get_item_count(BARREL_NAME) >= 1
-  if is_full then
+  local output_inventory = structure.get_inventory(defines.inventory.assembling_machine_output)
+  if not output_inventory then
     return
   end
 
@@ -94,8 +106,7 @@ local function periodic_checks()
           }
         })
 
-        local output_inventory = structure.get_inventory(defines.inventory.assembling_machine_output)
-        local is_full = output_inventory and output_inventory.get_item_count(BARREL_NAME) >= 1
+        local is_full = output_is_full(structure)
 
         if not is_full and #allied < MAX_ALLIES_PER_STRUCTURE then
           spawn_allied_unit(surface, structure)
