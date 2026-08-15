@@ -30,6 +30,8 @@ The nexus is a player-owned biotech engine, not a corrupted wilderness infection
 
 This is a prototype-focused pass intended to validate the mod's identity, base structure behavior, and allied-unit testing flow before deeper economy or progression systems are added.
 
+Performance remains a design priority, and the prototype will be reviewed with an eye toward long-running base behavior, stability, and any simulation costs that could affect UPS over time.
+
 The current build is intentionally centered on:
 
 - the `carapace-nexus` as a player-aligned biotech anchor
@@ -51,7 +53,7 @@ The active test loop is intentionally narrow and clean:
 - allied units are pushed outward so multiple sentinels can appear without stacking at the origin
 - nearby hostile units are monitored to validate response behavior in a controlled and repeatable way
 
-This is a prototype scenario, not a full gameplay economy. The goal is to prove the structure, sentinel behavior, and biotech identity before expanding into the broader capture-and-convert progression.
+This is a prototype scenario, not a full gameplay economy. The goal is to prove the structure, sentinel behavior, and biotech identity before expanding into the broader capture-and-convert progression, while keeping an eye on any performance bottlenecks that might emerge in larger play sessions.
 
 ## Development Notes
 
@@ -70,6 +72,7 @@ The next broad phase is the capture-and-convert pipeline:
 - Cyber-Slurry remains a barrel-only intermediary material that rewards deliberate storage, staging, and deployment planning
 - that slurry becomes the substrate for player-made cyborg guardians and larger biotech structures
 - the mod expands from a prototype defense concept into a more deliberate progression system without abandoning the current cyberpunk identity
+- design refinements will continue to account for long-term stability and UPS concerns as the system grows
 
 The intended rule remains simple: if the player wants their units to be usable, they must build around the logistics and spatial constraints of the nexus rather than treating the system like a standard pipe-fed factory loop.
 
