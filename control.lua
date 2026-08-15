@@ -5,8 +5,8 @@ local PERIODIC_TICK = 180
 local STRUCTURE_NAME = "carapace-nexus"
 local ALLIED_NAME = "carapace-sentinel"
 local BARREL_NAME = "cyber-slurry-barrel"
-local SAFE_RADIUS = 4.0
-local SPAWN_OUTER_RADIUS = 8.0
+local SAFE_RADIUS = 6.0
+local SPAWN_OUTER_RADIUS = 12.0
 local MAX_ALLIES_PER_STRUCTURE = 3
 
 local function distance_between(a, b)
