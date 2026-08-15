@@ -179,6 +179,8 @@ data:extend({
     ally.movement_speed = 0.31
     ally.vision_distance = 32
     ally.selection_box = { { -0.4, -0.4 }, { 0.4, 0.4 } }
+    ally.commandable = true
+    ally.can_open_gates = true
     ally.attack_parameters.range = 1.4
     ally.attack_parameters.cooldown = 30
     ally.attack_parameters.damage_modifier = 1.0

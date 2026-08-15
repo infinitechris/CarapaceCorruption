@@ -147,7 +147,7 @@ local function react_to_nearby_enemies()
     })
 
     for _, ally in pairs(allies) do
-      if ally and ally.valid then
+      if ally and ally.valid and ally.set_command then
         local enemy = nearest_enemy_in_range(surface, ally.position)
 
         if enemy and enemy.valid then
