@@ -101,8 +101,9 @@ data:extend({
     max_health = 260,
     corpse = "assembling-machine-1-remnants",
     dying_explosion = "medium-explosion",
-    collision_box = { { -1.2, -1.2 }, { 1.2, 1.2 } },
-    selection_box = { { -1.5, -1.5 }, { 1.5, 1.5 } },
+    collision_box = { { -1.8, -1.8 }, { 1.8, 1.8 } },
+    selection_box = { { -2.2, -2.2 }, { 2.2, 2.2 } },
+    drawing_box = { { -2.5, -2.5 }, { 2.5, 2.5 } },
     crafting_categories = { "carapace-incubation" },
     crafting_speed = 1,
     energy_source = {
