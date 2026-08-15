@@ -8,6 +8,7 @@ local BARREL_NAME = "cyber-slurry-barrel"
 local SAFE_RADIUS = 6.0
 local SPAWN_OUTER_RADIUS = 12.0
 local MAX_ALLIES_PER_STRUCTURE = 3
+local ENEMY_REACTION_RADIUS = 12.0
 
 local function distance_between(a, b)
   local dx = a.x - b.x
@@ -91,6 +92,55 @@ local function fill_internal_barrel(structure)
   output_inventory.insert({ name = BARREL_NAME, count = 1 })
 end
 
+local function nearest_enemy_in_range(surface, position)
+  local enemies = surface.find_entities_filtered({
+    force = "enemy",
+    type = "unit",
+    area = {
+      { position.x - ENEMY_REACTION_RADIUS, position.y - ENEMY_REACTION_RADIUS },
+      { position.x + ENEMY_REACTION_RADIUS, position.y + ENEMY_REACTION_RADIUS }
+    }
+  })
+
+  if #enemies == 0 then
+    return nil
+  end
+
+  table.sort(enemies, function(a, b)
+    return distance_between(position, a.position) < distance_between(position, b.position)
+  end)
+
+  return enemies[1]
+end
+
+local function react_to_nearby_enemies()
+  for _, surface in pairs(game.surfaces) do
+    local allies = surface.find_entities_filtered({
+      name = ALLIED_NAME,
+      force = "player"
+    })
+
+    for _, ally in pairs(allies) do
+      if ally and ally.valid then
+        local enemy = nearest_enemy_in_range(surface, ally.position)
+
+        if enemy and enemy.valid then
+          ally.set_command({
+            type = defines.command.attack,
+            target = enemy,
+            distraction = defines.distraction.by_damage
+          })
+        else
+          ally.set_command({
+            type = defines.command.wander,
+            ticks_to_wait = 30
+          })
+        end
+      end
+    end
+  end
+end
+
 local function periodic_checks()
   for _, surface in pairs(game.surfaces) do
     local structures = surface.find_entities_filtered({ name = STRUCTURE_NAME })
@@ -116,6 +166,8 @@ local function periodic_checks()
       end
     end
   end
+
+  react_to_nearby_enemies()
 end
 
 local function grant_free_nexus(player)
