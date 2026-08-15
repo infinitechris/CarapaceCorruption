@@ -113,6 +113,32 @@ local function nearest_enemy_in_range(surface, position)
   return enemies[1]
 end
 
+local function spawn_test_enemy_if_needed(surface, structure)
+  local probe_pos = {
+    x = structure.position.x + 10,
+    y = structure.position.y
+  }
+
+  local nearby_enemies = surface.count_entities_filtered({
+    force = "enemy",
+    type = "unit",
+    area = {
+      { probe_pos.x - 4, probe_pos.y - 4 },
+      { probe_pos.x + 4, probe_pos.y + 4 }
+    }
+  })
+
+  if nearby_enemies > 0 then
+    return
+  end
+
+  surface.create_entity({
+    name = "small-biter",
+    position = probe_pos,
+    force = "enemy"
+  })
+end
+
 local function react_to_nearby_enemies()
   for _, surface in pairs(game.surfaces) do
     local allies = surface.find_entities_filtered({
@@ -162,6 +188,7 @@ local function periodic_checks()
           spawn_allied_unit(surface, structure)
         end
 
+        spawn_test_enemy_if_needed(surface, structure)
         fill_internal_barrel(structure)
       end
     end
