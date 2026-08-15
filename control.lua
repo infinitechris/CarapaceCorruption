@@ -66,17 +66,17 @@ local function fill_internal_barrel(structure)
     return
   end
 
-  local inventory = structure.get_inventory(defines.inventory.chest)
-  if not inventory then
+  local output_inventory = structure.get_inventory(defines.inventory.assembling_machine_output)
+  if not output_inventory then
     return
   end
 
-  local is_full = inventory.get_item_count(BARREL_NAME) >= 1
+  local is_full = output_inventory.get_item_count(BARREL_NAME) >= 1
   if is_full then
     return
   end
 
-  inventory.insert({ name = BARREL_NAME, count = 1 })
+  output_inventory.insert({ name = BARREL_NAME, count = 1 })
 end
 
 local function periodic_checks()
@@ -94,8 +94,8 @@ local function periodic_checks()
           }
         })
 
-        local inventory = structure.get_inventory(defines.inventory.chest)
-        local is_full = inventory and inventory.get_item_count(BARREL_NAME) >= 1
+        local output_inventory = structure.get_inventory(defines.inventory.assembling_machine_output)
+        local is_full = output_inventory and output_inventory.get_item_count(BARREL_NAME) >= 1
 
         if not is_full and #allied < MAX_ALLIES_PER_STRUCTURE then
           spawn_allied_unit(surface, structure)

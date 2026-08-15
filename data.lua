@@ -83,6 +83,15 @@ data:extend({
   },
   {
     type = "item",
+    name = "cyber-slurry-barrel",
+    icon = "__base__/graphics/icons/fluid/barrel.png",
+    icon_size = 64,
+    stack_size = 50,
+    subgroup = "carapace-production",
+    order = "b"
+  },
+  {
+    type = "item",
     name = "carapace-nexus",
     icon = "__carapace-corruption__/graphics/icons/carapace-nexus.png",
     icon_size = 64,
