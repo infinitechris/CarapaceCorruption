@@ -147,20 +147,30 @@ local function react_to_nearby_enemies()
     })
 
     for _, ally in pairs(allies) do
-      if ally and ally.valid and ally.set_command then
-        local enemy = nearest_enemy_in_range(surface, ally.position)
+      if ally and ally.valid then
+        local ok, has_set_command = pcall(function()
+          return ally.set_command ~= nil
+        end)
 
-        if enemy and enemy.valid then
-          ally.set_command({
-            type = defines.command.attack,
-            target = enemy,
-            distraction = defines.distraction.by_damage
-          })
-        else
-          ally.set_command({
+        if ok and has_set_command then
+          local enemy = nearest_enemy_in_range(surface, ally.position)
+
+          local command = {
             type = defines.command.wander,
             ticks_to_wait = 30
-          })
+          }
+
+          if enemy and enemy.valid then
+            command = {
+              type = defines.command.attack,
+              target = enemy,
+              distraction = defines.distraction.by_damage
+            }
+          end
+
+          pcall(function()
+            ally.set_command(command)
+          end)
         end
       end
     end
