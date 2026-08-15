@@ -1,87 +1,59 @@
 # Carapace Corruption
 
-Carapace Corruption is a Factorio 2.0 mod prototype focused on a cyberpunk biotech defense fantasy. Rather than simply creating a hostile creature variant, the mod imagines a player-aligned bio-mechanical system: a player-owned nexus harvests biter biomass, distills it into Cyber-Slurry, and uses that biofluid as the raw material for a new generation of armored guardian units built for pest-eradication duty.
+Carapace Corruption is a Factorio 2.0 mod prototype built around a player-owned biotech defense loop. The concept blends industrial infrastructure, cyberpunk styling, and a biomatter conversion system: the player builds a nexus, harvests the mass of enemy swarms, turns it into Cyber-Slurry, and transforms that raw biological feed into allied sentinel guardians.
 
-The visual identity is built around neon bio-industrial aesthetics: acid-green glow, industrial plating, and the suggestion that the player's war machine was engineered from the biology of the battlefield itself.
+The mod’s public-facing identity is a player-aligned war machine: a bio-industrial fortress that uses the enemy’s own biomass against them, while keeping the overall design focused on controlled logistics, safe spacing, and clean structure placement.
 
-## Lore Direction
+## Design Goals
 
-The player is not a victim of a spreading fungal plague. They are a biotech harvester and enforcer, drawing out Cyber-Slurry from the biomass of the biter swarm and refining it into a potent biofluid that powers their own engineered organisms for pest-eradication duty.
+- Create a distinct biotech defense fantasy without turning the mod into a full enemy-control gimmick
+- Keep the player at the center of the system through a nexus-driven conversion loop
+- Use Cyber-Slurry as a deliberately constrained resource, with barrel handling creating a more tactical storage and staging problem
+- Build allied sentinel units that feel like engineered defenders, not wild creatures or tamable enemies
+- Maintain a prototype-first approach that is stable, readable, and easy to expand later
 
-The nexus is a player-owned biotech engine, not a corrupted wilderness infection. It gathers, processes, and shapes living material into a disciplined swarm of defensive constructs. The player commands their own bio-fabricated brood: their war machine is made through blood, sweat, and harvested biological fluids, not through petting, taming, or direct control of wild enemies.
+## Core Systems
 
-## Core Features
-
-- A player-placed nexus structure at the center of the biotech conversion loop
-- Cyber-Slurry as a barrel-only resource intentionally kept outside standard pipe logistics, forcing the player to manage storage, staging, and placement strategy
-- A biter-biomass conversion concept in which warped enemy life becomes the raw substrate for the nexus system
-- Allied sentinel units styled as cybernetic guardians, using base biter silhouette logic with a custom cyberpunk treatment
-- A prototype-only defensive test loop that checks nearby hostile presence and keeps allied spawn behavior stable and observable
-- Internal barrel handling and controlled slurry release as part of the nexus, creating a deliberate logistics challenge rather than a simple fluid-feed loop
-- A design direction that prioritizes unit usability through layout discipline, not free-form pipe automation
-
-## Project Structure
-
-- `info.json` — mod metadata and dependency declarations
-- `data.lua` — prototypes for fluids, items, recipes, structures, and sentinel units
-- `control.lua` — prototype testing logic, allied spawn behavior, and periodic checks
+- Nexus-based structure logic for the player’s biotech extraction and conversion network
+- Cyber-Slurry as a barrel-only intermediary resource intended to avoid standard fluid automation patterns
+- Biomass conversion concepts that transform battlefield threat into usable bio-material
+- Allied sentinel units designed around a biter-derived silhouette with a cybernetic, industrial treatment
+- Defensive spawn behavior that is easy to observe and tune in early testing stages
+- Controlled enemy proximity checks used to validate defensive response behavior during prototype iteration
 
 ## Current Status
 
-This is a prototype-focused pass intended to validate the mod's identity, base structure behavior, and allied-unit testing flow before deeper economy or progression systems are added.
+This is a prototype-focused pass intended to validate the mod’s identity, structure logic, sentinel behavior, and resource flow before deeper economy and progression systems are added.
 
-Performance remains a design priority, and the prototype will be reviewed with an eye toward long-running base behavior, stability, and any simulation costs that could affect UPS over time.
+The present direction stays intentionally simple:
 
-The current build is intentionally centered on:
+- the nexus is the player’s biotech anchor
+- allied sentinels are spawned on the player force in a controlled pattern
+- Cyber-Slurry is treated as a barrel-handling resource instead of a standard pipe-fed fluid loop
+- defensive spacing and placement rules are kept tight to support stable behavior in play sessions
+- nearby hostiles remain available as a test signal for sentinel responsiveness during early iteration
 
-- the `carapace-nexus` as a player-aligned biotech anchor
-- allied `carapace-sentinel` units appearing on the player force
-- Cyber-Slurry as a barrel-only resource that is never intended to flow through pipes, encouraging practical storage and layout planning
-- safe placement and spawn spacing for a large defensive footprint
-- enemy-proximity feedback as a test loop for sentinel behavior and structure response
+## Visual Direction
 
-The player does not directly command captured enemies. The prototype is built around player-owned defensive constructs emerging from the nexus rather than control over enemy units themselves.
+The visual language centers on:
 
-## Testing Phase
+- acid-green biotech glows and industrial plating
+- hard-edged war-machine forms with a bio-mechanical feel
+- dystopian factory aesthetics shaped by biomass-derived materials
+- a defensive, enemy-turned-asset identity that reads as engineered and purposeful rather than random corruption
 
-The active test loop is intentionally narrow and clean:
+## Project Structure
 
-- the player places the nexus as a fixed structure anchor
-- allied sentinels are spawned in a controlled pattern on the player force
-- Cyber-Slurry is handled as a barrel-only resource with no pipe-based flow, forcing the player to plan transport and staging around the structure
-- the prototype keeps a safe inner exclusion zone around the structure to avoid overlap
-- allied units are pushed outward so multiple sentinels can appear without stacking at the origin
-- nearby hostile units are monitored to validate response behavior in a controlled and repeatable way
+- info.json — mod metadata and project details
+- data.lua — definitions for items, recipes, structures, and prototype data
+- control.lua — runtime logic for sentinel testing, spawn behavior, and structure checks
+- graphics/ — art and visual assets
+- art/ — curated reference and tooling repository for design work
 
-This is a prototype scenario, not a full gameplay economy. The goal is to prove the structure, sentinel behavior, and biotech identity before expanding into the broader capture-and-convert progression, while keeping an eye on any performance bottlenecks that might emerge in larger play sessions.
+## Repository
 
-## Development Notes
+Project homepage: https://github.com/infinitechris/CarapaceCorruption
 
-The visual and design direction emphasizes:
+## Notes
 
-- cyberpunk color palettes with acid-green biotech accents
-- bio-mechanical industrial forms and engineered plating
-- dystopian factory aesthetics shaped by industrial biomatter and high-tech fabrication
-- a brutalist, high-tech defense identity that feels alien but still grounded in Factorio's base unit logic
-
-## Future Direction
-
-The next broad phase is the capture-and-convert pipeline:
-
-- warped biter biomass is gathered and processed by the nexus
-- Cyber-Slurry remains a barrel-only intermediary material that rewards deliberate storage, staging, and deployment planning
-- that slurry becomes the substrate for player-made cyborg guardians and larger biotech structures
-- the mod expands from a prototype defense concept into a more deliberate progression system without abandoning the current cyberpunk identity
-- design refinements will continue to account for long-term stability and UPS concerns as the system grows
-
-The intended rule remains simple: if the player wants their units to be usable, they must build around the logistics and spatial constraints of the nexus rather than treating the system like a standard pipe-fed factory loop.
-
-## Publishing
-
-```bash
-git add .
-git commit -m "Align README with biotech defense lore"
-git branch -M main
-git remote add origin https://github.com/infinitechris/CarapaceCorruption.git
-git push -u origin main
-```
+This mod remains in an early prototype phase. The goal is to build a readable, stable foundation for the nexus, sentinel defense loop, and Cyber-Slurry logistics before expanding into wider progression, economy, or combat systems.

@@ -3,8 +3,8 @@
   "title": "Carapace Corruption",
   "version": "0.1.0",
   "factorio_version": "2.0",
-  "author": "YourName",
-  "description": "A cyberpunk bio-mechanical corruption mod featuring Cyber-Slurry, incubator machinery, and mutated biter threats.",
-  "homepage": "",
+  "author": "infinitechris",
+  "description": "A cyberpunk biotech defense mod built around a player-owned nexus, Cyber-Slurry logistics, and allied sentinel guardians forged from battlefield biomass.",
+  "homepage": "https://github.com/infinitechris/CarapaceCorruption",
   "dependencies": ["base >= 2.0.0"]
 }
