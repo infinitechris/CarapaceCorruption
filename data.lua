@@ -115,13 +115,6 @@ data:extend({
     drawing_box = { { -3.2, -3.2 }, { 3.2, 3.2 } },
     crafting_categories = { "carapace-incubation" },
     crafting_speed = 1,
-    energy_source = {
-      type = "electric",
-      usage_priority = "secondary-input",
-      emissions_per_minute = { pollution = 0 },
-      drain = "20kW"
-    },
-    energy_usage = "90kW",
     ingredient_count = 0,
     module_specification = { module_slots = 0 },
     allowed_effects = {},
